@@ -10,7 +10,7 @@ MQTT_PORT = 1883
 MQTT_TOPIC = "calidad_aire/ciudades"
 
 # Leer el CSV
-CSV_PATH = "Datos_calidad_aire/updated_pollution_dataset.csv"  # Asegúrate de que este archivo esté en Publicador/
+CSV_PATH = "./Datos_calidad_aire/updated_pollution_dataset.csv"  # Asegúrate de que este archivo esté en Publicador/
 df = pd.read_csv(CSV_PATH)
 
 # Configurar cliente MQTT

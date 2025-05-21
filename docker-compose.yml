@@ -3,10 +3,9 @@ services:
     image: eclipse-mosquitto:latest
     container_name: Broker
     ports:
-      - "8884:8883"
+      - "1883:1883"
     volumes:
       - ./mosquitto/config:/mosquitto/config
-      - ./mosquitto/certs:/mosquitto/certs
     networks:
       - mqtt-net
 
@@ -23,10 +22,10 @@ services:
       - "8000:8000"
     volumes:
       - ./Publicador:/app
-      - ./mosquitto/certs:/certs
+      # - ./mosquitto/certs:/certs  # No usar certificados aún
 
   subscriptor:
-    build: ./Subscriptor
+    build: ./Suscriptor
     container_name: Subscriptor
     environment:
       - MQTT_BROKER=broker
@@ -37,8 +36,8 @@ services:
     ports:
       - "8001:8000"
     volumes:
-      - ./Subscriptor:/app
-      - ./mosquitto/certs:/certs
+      - ./Suscriptor:/app
+      # - ./mosquitto/certs:/certs  # No usar certificados aún
 
 networks:
   mqtt-net: {}
