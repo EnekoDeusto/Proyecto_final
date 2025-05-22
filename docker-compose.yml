@@ -9,9 +9,9 @@ services:
     networks:
       - mqtt-net
 
-  publicador:
-    build: ./Publicador
-    container_name: Publicador
+  capturador:
+    build: ./Capturador
+    container_name: Capturador
     environment:
       - MQTT_BROKER=broker
     depends_on:
@@ -21,12 +21,12 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./Publicador:/app
+      - ./Capturador:/app
       # - ./mosquitto/certs:/certs  # No usar certificados aún
 
-  subscriptor:
-    build: ./Suscriptor
-    container_name: Subscriptor
+  procesador:
+    build: ./Procesador
+    container_name: Procesador
     environment:
       - MQTT_BROKER=broker
     depends_on:
@@ -36,12 +36,12 @@ services:
     ports:
       - "8001:8000"
     volumes:
-      - ./Suscriptor:/app
+      - ./Procesador:/app
       # - ./mosquitto/certs:/certs  # No usar certificados aún
 
   db:
     image: postgres:15
-    container_name: base_datos
+    container_name: Postgres
     restart: always
     environment:
       POSTGRES_USER: postgres
@@ -55,7 +55,7 @@ services:
 
   grafana:
     image: grafana/grafana:11.6.0
-    container_name: grafana_turbina
+    container_name: Grafana
     restart: always
     environment:
       - GF_SECURITY_ADMIN_USER=admin
