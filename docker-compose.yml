@@ -39,5 +39,39 @@ services:
       - ./Suscriptor:/app
       # - ./mosquitto/certs:/certs  # No usar certificados aún
 
+  db:
+    image: postgres:15
+    container_name: base_datos
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: calidad_aire
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  grafana:
+    image: grafana/grafana:11.6.0
+    container_name: grafana_turbina
+    restart: always
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    depends_on:
+      - db
+
 networks:
   mqtt-net: {}
+
+volumes:
+  pgdata:
+  grafana_data:
