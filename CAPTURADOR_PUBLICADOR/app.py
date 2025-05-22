@@ -20,11 +20,18 @@ def main():
     print("Publicando datos...")
     for _, row in df.iterrows():
         payload = {
-            "country_name": row["country_name"],
-            "city_name": row["city_name"],
-            "aqi_value": row["aqi_value.5"],
-            "aqi_category": row["aqi_category"],
-            "co_aqi_value": row["co_aqi_value"],
+            "pais": row["country_name"],
+            "ciudad": row["city_name"],
+            "valor_calidad_aire": row["aqi_value"],
+            "categoria_calidad_aire": row["aqi_category"],
+            "valor_monoxido_carbono": row["co_aqi_value"],
+            "categoria_monoxido_carbono": row["co_aqi_category"],
+            "valor_ozono": row["ozone_aqi_value"],
+            "categoria_ozono": row["ozone_aqi_category"],
+            "valor_dioxido_nitrogeno": row["no2_aqi_value"],
+            "categoria_dioxido_nitrogeno": row["no2_aqi_category"],
+            "valor_particulas_finas": row["pm2.5_aqi_value"],
+            "categoria_particulas_finas": row["pm2.5_aqi_category"]
         }
 
         client.publish(MQTT_TOPIC, json.dumps(payload))
