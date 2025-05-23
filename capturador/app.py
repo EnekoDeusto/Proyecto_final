@@ -8,7 +8,7 @@ MQTT_BROKER = os.environ.get("MQTT_BROKER", "localhost")
 MQTT_PORT = 1883
 MQTT_TOPIC = "calidad_aire/ciudades"
 
-CSV_PATH = "./DATOS/global_air_pollution_data.csv"
+CSV_PATH = "./data/global_air_pollution_data.csv"
 df = pd.read_csv(CSV_PATH)
 
 client = mqtt.Client()
