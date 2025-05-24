@@ -24,7 +24,6 @@ def main():
             "ciudad": row["city_name"],
             "valor_calidad_aire": row["aqi_value"],
             "categoria_calidad_aire": row["aqi_category"],
-            "valor_monoxido_carbono": row["co_aqi_value"],
             "categoria_monoxido_carbono": row["co_aqi_category"],
             "valor_ozono": row["ozone_aqi_value"],
             "categoria_ozono": row["ozone_aqi_category"],
