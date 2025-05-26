@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   broker:
     image: eclipse-mosquitto:latest
@@ -12,7 +10,7 @@ services:
       - mqtt-net
 
   capturador:
-    build: ./Capturador
+    build: ./capturador
     container_name: Capturador
     environment:
       - MQTT_BROKER=broker
@@ -23,11 +21,11 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./Capturador:/app
+      - ./capturador:/capturador  # Para el servicio capturador
       # - ./mosquitto/certs:/certs  # No usar certificados aún
 
   procesador:
-    build: ./Procesador
+    build: ./procesador
     container_name: Procesador
     environment:
       - MQTT_BROKER=broker
@@ -44,7 +42,7 @@ services:
     ports:
       - "8001:8000"
     volumes:
-      - ./Procesador:/app
+      - ./procesador:/procesador  # Para el servicio procesador
       # - ./mosquitto/certs:/certs  # No usar certificados aún
 
   db:

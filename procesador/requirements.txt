@@ -1,4 +1,4 @@
-paho-mqtt
-pydantic
-sqlalchemy
-psycopg2-binary
+paho-mqtt==2.1.0
+pydantic==2.6.3
+sqlalchemy==2.0.29
+psycopg2-binary==2.9.9

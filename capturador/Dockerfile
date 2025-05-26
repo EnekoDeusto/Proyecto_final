@@ -1,11 +1,6 @@
 FROM python:3.12.3
-
-WORKDIR /app
-
-COPY . /app
-
-RUN pip install --no-cache-dir pandas paho-mqtt
-
-ENV PYTHONUNBUFFERED=1
-
-CMD ["python", "app.py"]
+WORKDIR /capturador
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+CMD ["python", "capturador.py"]
