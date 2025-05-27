@@ -51,7 +51,7 @@ def main():
         if idx % 10 == 0 or idx == total_rows:  # Show progress every 10 rows or at the end
             logger.info(f"Progreso: {idx}/{total_rows} filas procesadas ({idx/total_rows*100:.1f}%) - Tiempo transcurrido: {elapsed_time:.2f} segundos")
         
-        time.sleep(0.2)
+        time.sleep(0.001) # Small delay to avoid overwhelming the broker
 
     client.disconnect()
     total_elapsed_time = time.time() - start_time
