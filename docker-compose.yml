@@ -21,8 +21,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./capturador:/capturador  # Para el servicio capturador
-      # - ./mosquitto/certs:/certs  # No usar certificados aún
+      - ./capturador:/capturador
 
   procesador:
     build: ./procesador
@@ -42,8 +41,7 @@ services:
     ports:
       - "8001:8000"
     volumes:
-      - ./procesador:/procesador  # Para el servicio procesador
-      # - ./mosquitto/certs:/certs  # No usar certificados aún
+      - ./procesador:/procesador
 
   db:
     image: postgres:15

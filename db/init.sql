@@ -14,3 +14,5 @@ CREATE TABLE IF NOT EXISTS calidad_aire (
     valor_particulas_finas INTEGER,
     categoria_particulas_finas VARCHAR
 );
+
+

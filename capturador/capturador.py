@@ -5,7 +5,6 @@ import logging
 import pandas as pd
 import paho.mqtt.client as mqtt
 
-# Configure logger
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
@@ -48,10 +47,10 @@ def main():
         client.publish(MQTT_TOPIC, json.dumps(payload))
         elapsed_time = time.time() - start_time
         
-        if idx % 10 == 0 or idx == total_rows:  # Show progress every 10 rows or at the end
+        if idx % 10 == 0 or idx == total_rows:
             logger.info(f"Progreso: {idx}/{total_rows} filas procesadas ({idx/total_rows*100:.1f}%) - Tiempo transcurrido: {elapsed_time:.2f} segundos")
         
-        time.sleep(0.001) # Small delay to avoid overwhelming the broker
+        time.sleep(0.001)
 
     client.disconnect()
     total_elapsed_time = time.time() - start_time
